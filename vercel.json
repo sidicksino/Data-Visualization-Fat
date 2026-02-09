@@ -1,4 +1,5 @@
 {
+    "name": "data-visualization-fat",
     "builds": [
         {
             "src": "config/wsgi.py",
