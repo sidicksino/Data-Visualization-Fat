@@ -7,25 +7,119 @@
     <script src="https://cdn.tailwindcss.com"></script>
     {% load static %}
 </head>
-<body class="bg-black text-white m-0 overflow-hidden relative">
+<body class="bg-black text-white m-0 relative">
     <canvas id="particle-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
     <nav class="fixed top-0 left-0 w-full px-8 py-6 flex justify-between items-center z-50 bg-black/10 backdrop-blur-sm border-b border-white/10">
-        <a href="#" class="text-2xl font-bold tracking-tighter">FAT.</a>
+        <a href="#" class="text-2xl font-bold tracking-tighter relative z-50">FAT.</a>
+        
+        <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-            <a href="#" class="hover:text-white transition-colors">Work</a>
-            <a href="#" class="hover:text-white transition-colors">About</a>
-            <a href="#" class="hover:text-white transition-colors">Contact</a>
+            <a href="#about" class="hover:text-white transition-colors">Work</a>
+            <a href="#about" class="hover:text-white transition-colors">About</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
         </div>
-        <a href="#" class="px-5 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-colors">
+        <a href="#contact" class="hidden md:block px-5 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-colors">
             Let's Talk
         </a>
+
+        <!-- Hamburger Button -->
+        <button id="menu-btn" class="block md:hidden text-white focus:outline-none z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 text-2xl font-bold transform translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
+            <a href="#about" class="mobile-link hover:text-gray-400 transition-colors">Work</a>
+            <a href="#about" class="mobile-link hover:text-gray-400 transition-colors">About</a>
+            <a href="#contact" class="mobile-link hover:text-gray-400 transition-colors">Contact</a>
+            <a href="#contact" class="mobile-link px-8 py-3 bg-white text-black rounded-full hover:bg-gray-200 transition-colors">Let's Talk</a>
+        </div>
     </nav>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                // Change icon to X
+                menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                // Change icon back to Hamburger
+                menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+            }
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('translate-x-full');
+                menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+            });
+        });
+    </script>
     
+    <!-- Hero Section -->
     <main class="relative z-10 flex items-center justify-center h-screen pointer-events-none">
-        <!-- Content can go here, pointer-events-none allows clicking through to canvas if needed, 
-             but usually text is selectable. For now, we leave it empty as the particle text is the hero. -->
+        
     </main>
+
+    <!-- Content Section -->
+    <section id="about" class="relative z-10 w-full bg-black/50 backdrop-blur-md min-h-screen flex flex-col items-center justify-center py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-12">
+            
+            <div class="space-y-4">
+                <h2 class="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                    We Craft Digital Experiences.
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    We are a collective of creators, thinkers, and builders dedicated to pushing the boundaries of web design and data visualization.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-16">
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm group">
+                    <div class="h-12 w-12 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Data Analysis</h3>
+                    <p class="text-gray-400 text-sm">Transforming complex datasets into actionable insights through advanced analytics.</p>
+                </div>
+                
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm group">
+                    <div class="h-12 w-12 bg-purple-500/20 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Visualization</h3>
+                    <p class="text-gray-400 text-sm">Creating stunning, interactive visual narratives that bring data to life.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm group">
+                     <div class="h-12 w-12 bg-pink-500/20 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Development</h3>
+                    <p class="text-gray-400 text-sm">Building robust, scalable web applications with modern technologies.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <script src="{% static 'FAT/js/particle-text.js' %}"></script>
 </body>
