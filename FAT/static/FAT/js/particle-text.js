@@ -89,7 +89,8 @@ class Particle {
     kill(width, height) {
         if (!this.isKilled) {
             // Set target outside the scene
-            const randomPos = generateRandomPos(width / 2, height / 2, (width + height) / 2);
+            // Set target outside the scene
+            const randomPos = generateRandomPos(width / 2, height / 2, (width + height) / 2, width, height);
             this.target.x = randomPos.x;
             this.target.y = randomPos.y;
 
@@ -107,9 +108,9 @@ class Particle {
     }
 }
 
-function generateRandomPos(x, y, mag) {
-    const randomX = Math.random() * 1000;
-    const randomY = Math.random() * 500;
+function generateRandomPos(x, y, mag, width, height) {
+    const randomX = Math.random() * width;
+    const randomY = Math.random() * height;
 
     const direction = {
         x: randomX - x,
@@ -197,7 +198,8 @@ class ParticleTextEffect {
 
         // Draw text
         offscreenCtx.fillStyle = "white";
-        offscreenCtx.font = "bold 150px Arial"; // Increased font size slightly
+        const fontSize = Math.min(this.canvas.width * 0.15, 150);
+        offscreenCtx.font = `bold ${fontSize}px Arial`;
         offscreenCtx.textAlign = "center";
         offscreenCtx.textBaseline = "middle";
         offscreenCtx.fillText(word, this.canvas.width / 2, this.canvas.height / 2);
@@ -243,7 +245,7 @@ class ParticleTextEffect {
                 } else {
                     particle = new Particle();
 
-                    const randomPos = generateRandomPos(this.canvas.width / 2, this.canvas.height / 2, (this.canvas.width + this.canvas.height) / 2);
+                    const randomPos = generateRandomPos(this.canvas.width / 2, this.canvas.height / 2, (this.canvas.width + this.canvas.height) / 2, this.canvas.width, this.canvas.height);
                     particle.pos.x = randomPos.x;
                     particle.pos.y = randomPos.y;
 
