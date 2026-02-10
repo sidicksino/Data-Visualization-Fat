@@ -7,8 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     {% load static %}
 </head>
-<body class="bg-black text-white m-0 overflow-hidden">
-    <canvas id="particle-canvas" class="block w-screen h-screen"></canvas>
+<body class="bg-black text-white m-0 overflow-hidden relative">
+    <canvas id="particle-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <nav class="fixed top-0 left-0 w-full px-8 py-6 flex justify-between items-center z-50 bg-black/10 backdrop-blur-sm border-b border-white/10">
+        <a href="#" class="text-2xl font-bold tracking-tighter">FAT.</a>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+            <a href="#" class="hover:text-white transition-colors">Work</a>
+            <a href="#" class="hover:text-white transition-colors">About</a>
+            <a href="#" class="hover:text-white transition-colors">Contact</a>
+        </div>
+        <a href="#" class="px-5 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-colors">
+            Let's Talk
+        </a>
+    </nav>
+    
+    <main class="relative z-10 flex items-center justify-center h-screen pointer-events-none">
+        <!-- Content can go here, pointer-events-none allows clicking through to canvas if needed, 
+             but usually text is selectable. For now, we leave it empty as the particle text is the hero. -->
+    </main>
 
     <script src="{% static 'FAT/js/particle-text.js' %}"></script>
 </body>
