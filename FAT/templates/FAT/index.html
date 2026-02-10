@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAT App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
 </head>
-<body>
-    <h1>Hello, world. You're at the FAT index (from template).</h1>
+<body class="bg-black text-white m-0 overflow-hidden">
+    <canvas id="particle-canvas" class="block w-screen h-screen"></canvas>
+
+    <script src="{% static 'FAT/js/particle-text.js' %}"></script>
 </body>
 </html>
