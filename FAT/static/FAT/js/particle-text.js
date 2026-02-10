@@ -198,7 +198,10 @@ class ParticleTextEffect {
 
         // Draw text
         offscreenCtx.fillStyle = "white";
-        const fontSize = Math.min(this.canvas.width * 0.15, 150);
+        // Calculate font size based on canvas width and word length
+        // 0.15 * width is the baseline
+        // (width * 0.9) / (word.length * 0.7) estimates the max font size to fit the word width-wise
+        const fontSize = Math.min(this.canvas.width * 0.18, (this.canvas.width * 0.9) / (word.length * 0.6), 150);
         offscreenCtx.font = `bold ${fontSize}px Arial`;
         offscreenCtx.textAlign = "center";
         offscreenCtx.textBaseline = "middle";
