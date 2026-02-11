@@ -120,3 +120,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# NewsData.io API Key
+NEWSDATA_API_KEY = 'pub_55d6a9779ffb4165af46a958125bf003'
