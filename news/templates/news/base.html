@@ -19,10 +19,50 @@
             <a href="/#about" class="hover:text-white transition-colors">Work</a>
             <a href="/#contact" class="hover:text-white transition-colors">Contact</a>
         </div>
+        <!-- Hamburger Button -->
+        <button id="menu-btn" class="block md:hidden text-white focus:outline-none z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 text-2xl font-bold transform translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
+        <a href="/" class="mobile-link hover:text-gray-400 transition-colors">Home</a>
+        <a href="/#about" class="mobile-link hover:text-gray-400 transition-colors">Work</a>
+        <a href="/#contact" class="mobile-link hover:text-gray-400 transition-colors">Contact</a>
+    </div>
 
     {% block content %}{% endblock %}
 
     <script src="{% static 'news/js/lightning.js' %}"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.add('translate-x-full');
+                    menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+                });
+            });
+        }
+    </script>
 </body>
 </html>

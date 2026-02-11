@@ -129,7 +129,7 @@ function generateRandomPos(x, y, mag, width, height) {
     };
 }
 
-const DEFAULT_WORDS = ["DATA", "VISUALIZATION", "BY", "ADOUNIA"];
+const DEFAULT_WORDS = ["DATA", "VISUALIZATION", "BY", "ADONIA"];
 
 class ParticleTextEffect {
     constructor(canvasId, words = DEFAULT_WORDS) {

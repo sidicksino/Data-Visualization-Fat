@@ -72,7 +72,7 @@ body {
 
 /* Hero Typography */
 .hero-title-large {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 24px;
@@ -111,6 +111,7 @@ body {
     display: flex;
     gap: 16px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .btn-primary-gradient {
@@ -292,8 +293,8 @@ body {
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .news-card {
