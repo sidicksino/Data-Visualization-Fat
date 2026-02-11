@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - FAT App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full px-8 py-6 flex justify-between items-center z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <a href="/" class="text-2xl font-bold tracking-tighter text-white">FAT.</a>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <a href="/#about" class="hover:text-white transition-colors">Work</a>
+            <a href="/#contact" class="hover:text-white transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'news/js/lightning.js' %}"></script>
+</body>
+</html>
